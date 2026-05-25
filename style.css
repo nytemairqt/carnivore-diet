@@ -105,7 +105,9 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%;
   background: var(--elevated); display: flex; align-items: center;
   justify-content: center; font-size: 1.1rem; margin-top: 0.15rem;
+  overflow: hidden;
 }
+.voice-card .avatar img { width: 100%; height: 100%; object-fit: cover; }
 
 .voice-card .info { flex: 1; min-width: 0; }
 .voice-card .info .name { font-weight: 600; font-size: 0.95rem; color: var(--text); }
