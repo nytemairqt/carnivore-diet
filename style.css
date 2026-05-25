@@ -62,7 +62,7 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
 /* Start Here button grid */
 .start-here-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 0.6rem;
 }
 
