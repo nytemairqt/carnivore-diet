@@ -257,7 +257,8 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
 .about-section p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
 
 /* Resources / affiliate grid */
-.resources { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.resources { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.5rem 0; }
+@media (max-width: 500px) { .resources { grid-template-columns: 1fr; } }
 
 .resource-card {
   display: block;
