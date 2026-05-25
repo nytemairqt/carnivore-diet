@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>All Posts — Curated Carnivore</title>
+  <meta name="description" content="All articles on the carnivore diet — guides, research summaries, and resources.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥩</text></svg>">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="site-header">
+      <a class="back-link" href="../">&#8592; Back</a>
+      <h1>All Posts</h1>
+      <p class="tagline">Every article on Curated Carnivore</p>
+    </header>
+
+    <ul class="post-list" id="post-list">
+      <li style="color:#666;font-size:0.9rem;padding:1rem;">Loading...</li>
+    </ul>
+
+    <footer class="site-footer">
+      <p><strong>Not medical advice.</strong> Always consult your healthcare provider before making dietary changes.</p>
+    </footer>
+  </div>
+
+  <script>
+  (function(){
+    fetch('index.json').then(function(r){ return r.json(); }).then(function(posts){
+      posts.sort(function(a,b){ return new Date(b.date) - new Date(a.date); });
+      var html = '';
+      for(var i=0; i<posts.length; i++){
+        var p = posts[i];
+        html += '<li class="post-item">'
+             +   '<p class="date">' + p.date + '</p>'
+             +   '<h2><a href="' + p.url + '">' + p.title + '</a></h2>'
+             +   '<p class="excerpt">' + p.excerpt + '</p>'
+             + '</li>';
+      }
+      document.getElementById('post-list').innerHTML = html;
+    }).catch(function(){
+      document.getElementById('post-list').innerHTML = '<li style="color:#666;font-size:0.9rem;padding:1rem;">No posts yet.</li>';
+    });
+  })();
+  </script>
+</body>
+</html>
