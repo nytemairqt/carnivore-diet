@@ -18,42 +18,49 @@
     <section style="margin-bottom:2rem;">
       <h2 style="font-size:1rem;font-weight:600;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:#666;">Start Here</h2>
       <div class="start-here-grid">
-        <a href="start_here/carnivore-101.html" class="start-card">Carnivore 101</a>
-        <a href="start_here/bbbe.html" class="start-card">BBBE</a>
-        <a href="start_here/raw-meats-and-organs.html" class="start-card">Raw Meats &amp; Organs</a>
-        <a href="start_here/the-adaptation-phase.html" class="start-card">The Adaptation Phase</a>
-        <a href="start_here/prominent-voices.html" class="start-card">Prominent Voices</a>
-        <a href="start_here/plant-toxins-explained.html" class="start-card">Plant Toxins Explained</a>
+        <a href="start_here/carnivore-101.html" class="start-card">🍖 Carnivore 101 🍖</a>
+        <a href="start_here/bbbe.html" class="start-card">🥩🥓 BBBE 🧈🥚</a>
+        <a href="start_here/raw-meats-and-organs.html" class="start-card">🥩 Raw Meats &amp; Organs 💗</a>
+        <a href="start_here/the-adaptation-phase.html" class="start-card">🤧 The Adaptation Phase 🤢</a>
+        <a href="start_here/prominent-voices.html" class="start-card">🧑 Prominent Voices 👩</a>
+        <a href="start_here/plant-toxins-explained.html" class="start-card">🌱 Plant Toxins Explained ☠️</a>
       </div>
     </section>
 
     <!-- Latest posts -->
     <section>
-      <h2 style="font-size:1rem;font-weight:600;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.05em;color:#78716c;">Latest Posts</h2>
+      <h2 style="font-size:1rem;font-weight:600;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.05em;color:#666;">Latest Posts</h2>
       <ul class="post-list" id="post-list">
-        <li class="post-item">
-          <p class="date">May 25, 2026</p>
-          <h2><a href="posts/2026-05-25-test-pipeline.html">Pipeline Test Successful</a></h2>
-          <p class="excerpt">This article was generated automatically by the NEATContent cron job to verify the full automation pipeline.</p>
-        </li>
-        <li class="post-item">
-          <p class="date">May 25, 2026</p>
-          <h2><a href="posts/2026-05-25-psoriasis-healing.html">How Carnivore Diet Healed Severe Psoriasis</a></h2>
-          <p class="excerpt">After 30 years of battling psoriasis covering 50% of his body, Phillip found relief through the carnivore diet. The gut-skin connection explained.</p>
-        </li>
-        <li class="post-item">
-          <p class="date">May 25, 2026</p>
-          <h2><a href="posts/2026-05-25-30-day-experience.html">My 30-Day Carnivore Diet Experience</a></h2>
-          <p class="excerpt">Real results after one month on an all-meat diet: gut issues resolved, skin cleared, energy stabilized. A detailed week-by-week breakdown.</p>
-        </li>
-        <li class="post-item">
-          <p class="date">May 25, 2026</p>
-          <h2><a href="posts/2026-05-25-what-is-carnivore.html">What Is the Carnivore Diet?</a></h2>
-          <p class="excerpt">A clear, no-nonsense overview of the carnivore diet — what to eat, the science behind it, and who it might help.</p>
-        </li>
+        <li style="color:#666;font-size:0.9rem;padding:1rem;">Loading...</li>
       </ul>
+      <p style="margin-top:0.5rem;font-size:0.85rem;"><a href="posts/" id="archive-link">View all posts &rarr;</a></p>
     </section>
 
+    <script>
+    (function(){
+      var list = document.getElementById('post-list');
+      fetch('posts/index.json').then(function(r){ return r.json(); }).then(function(posts){
+        posts.sort(function(a,b){ return new Date(b.date) - new Date(a.date); });
+        var max = 5;
+        var html = '';
+        for(var i=0; i<posts.length && i<max; i++){
+          var p = posts[i];
+          html += '<li class="post-item">'
+               +   '<p class="date">' + p.date + '</p>'
+               +   '<h2><a href="' + p.url + '">' + p.title + '</a></h2>'
+               +   '<p class="excerpt">' + p.excerpt + '</p>'
+               + '</li>';
+        }
+        list.innerHTML = html;
+        var al = document.getElementById('archive-link');
+        if(posts.length > max){
+          al.textContent = 'View all ' + posts.length + ' posts \u2192';
+        }
+      }).catch(function(){
+        list.innerHTML = '<li style="color:#666;font-size:0.9rem;padding:1rem;">Could not load posts.</li>';
+      });
+    })();
+    </script>
     <!-- About -->
     <section class="about-section">
       <h2>About This Topic</h2>
